@@ -12,7 +12,7 @@ stationsToImport.forEach(station=>{
       'Content-Type': 'application/json'
     },
     'json': true,
-    'url': "http://localhost:3000/station",
+    'url': "http://localhost:4000/station",
     'body': station
   };
   requestPromise(options)
@@ -23,7 +23,7 @@ stationsToImport.forEach(station=>{
   .catch(function (err) {
     failedCounter++
     console.log(`ERROR: ${err}`);
-    console.log("body: " + station);
+    console.log("body: " + JSON.stringify(station));
     console.log(`${failedCounter} failed`);
       requestPromise(options)
       .then(function (response) {
@@ -33,7 +33,7 @@ stationsToImport.forEach(station=>{
       .catch(function (err) {
         failedCounter++
         console.log(`ERROR: ${err}`);
-        console.log("body: " + station);
+        console.log("body: " + JSON.stringify(station));
         console.log(`${failedCounter} failed`);
   });
   })
