@@ -6,13 +6,17 @@ let succesCounter = 0;
 let failedCounter = 0;
 
 stationsToImport.forEach(station=>{
+
+  //Java app doesn't currently like nest objects
+  station.location = JSON.stringify(station.location);
+
   const options =  {
     'method': 'POST',
     'headers': {
       'Content-Type': 'application/json'
     },
     'json': true,
-    'url': "http://localhost:4000/station",
+    'url': "http://localhost:8081/EnosJava/api/snotel/stations",
     'body': station
   };
   requestPromise(options)
